@@ -7,3 +7,6 @@ pennylane==0.41.0
 customtkinter==5.2.2
 bleach==6.3.0
 pyttsx3==2.99
+# PRISM's local vector client. Keep exact: it downloads/launches the separately
+# validated embedded Weaviate server version configured by the application.
+weaviate-client==4.23.1
