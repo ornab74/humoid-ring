@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Humoid Fusion
+Comment=Encrypted local Gemma + advanced coding agent
+Type=Application
+Terminal=false
+Categories=Development;Utility;
+Exec=sh -c 'cd "$(dirname "$1")" && exec ./run-fusion.sh' dummy %k

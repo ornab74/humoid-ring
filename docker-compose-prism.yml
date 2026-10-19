@@ -1,0 +1,24 @@
+# Optional private PRISM Weaviate index. NOT encrypted by the GUI vault.
+# Set PRISM_WEAVIATE_API_KEY in your local shell (do not commit its value).
+# Start with: docker compose -f docker-compose-prism.yml up -d
+services:
+  weaviate:
+    image: cr.weaviate.io/semitechnologies/weaviate:1.40.0
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:8080:8080'
+      - '127.0.0.1:50051:50051'
+    volumes:
+      - prism_weaviate_data:/var/lib/weaviate
+    environment:
+      PERSISTENCE_DATA_PATH: /var/lib/weaviate
+      QUERY_DEFAULTS_LIMIT: '30'
+      CLUSTER_HOSTNAME: prism-node
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
+      AUTHENTICATION_APIKEY_ENABLED: 'true'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: '${PRISM_WEAVIATE_API_KEY:?Set your private API key}'
+      AUTHENTICATION_APIKEY_USERS: 'prism'
+      AUTHORIZATION_ENABLE_RBAC: 'true'
+      AUTHORIZATION_RBAC_ROOT_USERS: 'prism'
+volumes:
+  prism_weaviate_data:

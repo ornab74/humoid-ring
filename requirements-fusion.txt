@@ -1,0 +1,10 @@
+# Install from project root using: python -m pip install -r requirements-fusion.txt
+# -e . installs original TUI engine, all provider/config/retrieval dependencies,
+# and retains the optional original `humoid` terminal command.
+-e .
+# Original GUI dependencies, including encrypted LiteRT model runtime.
+-r requirements.in
+
+# PRISM's authenticated local vector index. The embedded server binary is
+# downloaded by the client on first use and then starts with the GUI vault.
+weaviate-client==4.23.1
